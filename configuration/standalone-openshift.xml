@@ -38,6 +38,9 @@
         <extension module="org.wildfly.extension.security.manager"/>
         <extension module="org.wildfly.extension.undertow"/>
     </extensions>
+    <system-properties>
+      <property name="my.project.dir" value="/home/francesco"/>
+    </system-properties>
     <management>
         <security-realms>
             <security-realm name="ManagementRealm">
@@ -141,7 +144,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:6.0">
             <datasources>
               <datasource jndi-name="java:jboss/datasources/PostgresDS" pool-name="PostgresDS">
-                <connection-url>jdbc:postgresql://localhost:5432/postgres</connection-url>
+                <connection-url>jdbc:postgresql://database-server:5432/demodb</connection-url>
                 <driver>postgresql</driver>
                 <security>
                   <user-name>postgre</user-name>
@@ -150,7 +153,7 @@
              </datasource>
                 <drivers>
                     <driver name="postgresql" module="org.postgresql">
-                      <driver-class>org.postgresql.Driver</driver-class>
+                      <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
